@@ -4,6 +4,7 @@ import { handler } from '../../src/lambdas/breeds-get'
 jest.mock('node-fetch', () => ({
   __esModule: true,
   ...jest.requireActual('node-fetch'),
+  // Mock fetch default export and actual import other variables (e.g. FetchError)
   default: jest.genMockFromModule('node-fetch'),
 }))
 const mockedFetch: jest.Mock = fetch as any
@@ -63,7 +64,7 @@ describe('breeds-get handler', () => {
     const response = await handler()
     expect(response).toMatchObject({
       statusCode: 500,
-      message: 'Unsure what happened, but something went wrong with the fetch',
+      message: 'Something else went wrong',
     })
   })
 })
