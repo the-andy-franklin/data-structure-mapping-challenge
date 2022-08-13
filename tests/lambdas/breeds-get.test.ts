@@ -4,7 +4,7 @@ import { handler } from '../../src/lambdas/breeds-get'
 jest.mock('node-fetch', () => ({
   __esModule: true,
   ...jest.requireActual('node-fetch'),
-  // Mock fetch default export and actual import other variables (e.g. FetchError)
+  // Mocking the default export of 'node-fetch' and actually importing all other exports (e.g. FetchError)
   default: jest.genMockFromModule('node-fetch'),
 }))
 const mockedFetch: jest.Mock = fetch as any
